@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Entity
 @Getter
 @Setter
-@Service
 @Table(name = "board_table")
 public class BoardEntity extends BaseEntity {
     @Id // pk 컬럼 지정. 필수
