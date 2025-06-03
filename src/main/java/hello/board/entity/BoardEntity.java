@@ -1,13 +1,16 @@
 package hello.board.entity;
 
 
+import hello.board.dto.BoardDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 // DB의 테이블 역할을 하는 클래스
 @Entity
 @Getter
+@Setter
 @Service
 @Table(name = "board_table")
 public class BoardEntity extends BaseEntity {
@@ -29,4 +32,15 @@ public class BoardEntity extends BaseEntity {
 
     @Column
     private int boardHits;
+
+    public static BoardEntity toSaveEntity(BoardDTO boardDTO) {
+        // DTO에 담긴 값들을 Entity에 옮겨 담는 작업
+        BoardEntity boardEntity = new BoardEntity();
+        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
+        boardEntity.setBoardPass(boardDTO.getBoardPass());
+        boardEntity.setBoardTitle(boardDTO.getBoardTitle());
+        boardEntity.setBoardContents(boardDTO.getBoardContents());
+        boardEntity.setBoardHits(0);
+        return boardEntity;
+    }
 }
